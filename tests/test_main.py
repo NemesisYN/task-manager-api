@@ -36,3 +36,8 @@ def test_register_user():
     })
     assert response.status_code == 200
     assert "id" in response.json()
+
+def test_about():
+    responce = client.get("/about")
+    assert responce.status_code == 200
+    assert responce.json() == {"version": 1.0, "author": "NemesisYN"}
