@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: S3crtKfiJ4
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:S3crtKfiJ4@db:5432/postgres
+      SECRET_KEY: 382HIWN93JOUUNE6bODNmdo847HSAWQliwmsh329j
+
+volumes:
+  postgres_data:
