@@ -222,4 +222,8 @@ async def delete_task(task_id: int, current_user: UserDB = Depends(get_current_u
 async def health():
     return {"status": "alive"}
 
+@app.get("/about")
+async def about():
+    return {"version": 1.0, "author": "NemesisYN"}
+
 
